@@ -9,7 +9,7 @@ import type { UserRole } from "@/lib/mock-data/users"
 type NavItem = { label: string; href: string; icon: LucideIcon }
 const navigation: Record<UserRole, NavItem[]> = {
   student: [{ label: "Dashboard", href: "/student/dashboard", icon: LayoutDashboard }, { label: "My internship", href: "/student/internship", icon: BriefcaseBusiness }, { label: "Milestones", href: "/student/milestones", icon: ClipboardCheck }, { label: "Attendance", href: "/student/attendance", icon: CalendarCheck2 }, { label: "Skill Gap Report", href: "/student/skill-gap", icon: BookOpenCheck }],
-  mentor: [{ label: "Dashboard", href: "/mentor/dashboard", icon: LayoutDashboard }, { label: "Review queue", href: "/mentor/reviews", icon: FileCheck2 }, { label: "Students", href: "/mentor/students", icon: Users }],
+  mentor: [{ label: "Dashboard", href: "/mentor/dashboard", icon: LayoutDashboard }, { label: "Review queue", href: "/mentor/reviews", icon: FileCheck2 }, { label: "Students", href: "/mentor/students", icon: Users }, { label: "Add student", href: "/mentor/add-student", icon: Users }],
   industry: [{ label: "Dashboard", href: "/industry/dashboard", icon: LayoutDashboard }, { label: "Internships", href: "/industry/internships", icon: BriefcaseBusiness }, { label: "Verification", href: "/industry/verification", icon: FileCheck2 }],
 }
 
