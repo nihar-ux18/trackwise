@@ -1,0 +1,18 @@
+import Link from "next/link"
+import { ArrowUpRight, ClipboardCheck, Users } from "lucide-react"
+import { Avatar, AvatarFallback } from "@/components/ui/avatar"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Sidebar } from "@/components/shared/Sidebar"
+import { StatCard } from "@/components/shared/StatCard"
+import { StatusBadge } from "@/components/shared/StatusBadge"
+import { Topbar } from "@/components/shared/Topbar"
+import { milestones, users } from "@/lib/mock-data"
+
+const mentor = users.find((user) => user.id === "mentor-001")!
+const students = users.filter((user) => user.role === "student")
+
+export default function MentorDashboardPage() {
+  const pendingReviews = students.reduce((total, student) => total + milestones.filter((milestone) => milestone.studentId === student.id && milestone.status === "pending").length, 0)
+
+  return <div className="min-h-screen bg-canvas"><Sidebar role="mentor" /><div className="md:pl-[240px]"><Topbar user={mentor} /><main className="mx-auto max-w-[1200px] space-y-8 px-5 py-8 md:px-8"><div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end"><div><p className="text-sm font-medium text-primary">Mentor workspace</p><h1 className="mt-2 text-[30px] font-bold leading-tight tracking-[-0.4px] text-ink">Assigned students</h1><p className="mt-2 text-[15px] text-ink-muted">Keep student progress moving with timely review and guidance.</p></div><Link href="/mentor/add-student" className="inline-flex w-fit items-center gap-2 rounded-md bg-accent px-4 py-2.5 text-sm font-semibold text-white hover:bg-[var(--accent-hover)]">Add student <ArrowUpRight className="size-4" /></Link></div><section aria-label="Mentor overview" className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3"><StatCard label="Assigned students" value={students.length} detail="Active internship profiles" icon={Users} /><StatCard label="Pending reviews" value={pendingReviews} detail="Milestones awaiting action" icon={ClipboardCheck} /></section><Card className="rounded-lg border border-border bg-surface-1 shadow-none"><CardHeader className="flex-row items-center justify-between p-5 pb-3"><div><CardTitle className="text-base font-semibold text-ink">Student review queue</CardTitle><p className="mt-1 text-[13px] text-ink-muted">Open a student profile to review milestones, attendance, and progress.</p></div><span className="text-sm text-ink-muted">{students.length} students</span></CardHeader><CardContent className="grid gap-3 p-5 pt-2">{students.map((student) => { const studentPending = milestones.filter((milestone) => milestone.studentId === student.id && milestone.status === "pending").length; return <Link key={student.id} href={`/mentor/team/${student.id}`} className="flex items-center justify-between gap-4 rounded-md border border-border p-4 transition-colors hover:bg-surface-2"><div className="flex min-w-0 items-center gap-3"><Avatar className="size-10 rounded-md"><AvatarFallback className="rounded-md bg-primary/10 text-xs font-semibold text-primary">{student.avatarInitials}</AvatarFallback></Avatar><div className="min-w-0"><p className="truncate text-sm font-semibold text-ink">{student.name}</p><p className="mt-1 truncate text-[13px] text-ink-muted">{student.internshipTitle ?? "Internship student"}</p></div></div><div className="flex shrink-0 items-center gap-3"><StatusBadge status={studentPending > 0 ? "pending" : "verified"} /><span className="hidden text-[13px] text-ink-muted sm:inline">{studentPending} pending</span><ArrowUpRight className="size-4 text-ink-subtle" /></div></Link> })}</CardContent></Card></main></div></div>
+}

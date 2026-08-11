@@ -1,0 +1,3 @@
+export default function Home() {
+  return <main className="flex min-h-screen items-center justify-center bg-canvas p-6"><div className="max-w-md text-center"><div className="mx-auto flex size-12 items-center justify-center rounded-md bg-primary font-bold text-white">TW</div><h1 className="mt-5 text-2xl font-bold text-ink">TrackWise</h1><p className="mt-2 text-ink-muted">Verified internship progress, in one calm workspace.</p><a className="mt-6 inline-flex rounded-md bg-primary px-4 py-2.5 text-sm font-semibold text-white hover:bg-[var(--primary-hover)]" href="/student/dashboard">Open student dashboard</a></div></main>
+}
