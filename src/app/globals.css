@@ -53,6 +53,8 @@
   --accent-hover: #C2410C;
   --accent-light: #FB923C;
   --primary-light: #7C3AED;
+  --hero-lavender: #D8B4FE;
+  --hero-pink-orange: #FDA4AF;
   --on-accent: #FFFFFF;
   --ink: #0F172A;
   --ink-muted: #475569;
@@ -112,6 +114,14 @@
     animation: drift-primary 18s ease-in-out infinite alternate;
   }
 
+  .mesh-blob-lavender {
+    width: 720px;
+    height: 720px;
+    background: var(--hero-lavender);
+    opacity: 0.68;
+    animation: drift-lavender 24s ease-in-out infinite alternate;
+  }
+
   .mesh-blob-primary-light {
     width: 620px;
     height: 620px;
@@ -131,7 +141,7 @@
   .mesh-blob-accent-light {
     width: 520px;
     height: 520px;
-    background: var(--accent-light);
+    background: var(--hero-pink-orange);
     opacity: 0.62;
     animation: drift-accent-light 20s ease-in-out infinite alternate;
   }
@@ -139,6 +149,11 @@
   @keyframes drift-primary {
     0% { transform: translate(0, 0) scale(1); }
     100% { transform: translate(64px, -42px) scale(1.14); }
+  }
+
+  @keyframes drift-lavender {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(54px, 46px) scale(1.1); }
   }
 
   @keyframes drift-primary-light {
@@ -154,5 +169,23 @@
   @keyframes drift-accent-light {
     0% { transform: translate(0, 0) scale(1); }
     100% { transform: translate(-46px, -34px) scale(1.1); }
+  }
+
+  .animated-gradient-bg {
+    background: linear-gradient(-45deg, var(--primary), var(--primary-light), var(--accent), var(--accent-light), #D8B4FE);
+    background-size: 300% 300%;
+    animation: gradient-drift 20s ease infinite;
+  }
+
+  @keyframes gradient-drift {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
   }
 }
