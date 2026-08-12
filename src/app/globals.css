@@ -51,6 +51,8 @@
   --on-primary: #FFFFFF;
   --accent: #EA580C;
   --accent-hover: #C2410C;
+  --accent-light: #FB923C;
+  --primary-light: #7C3AED;
   --on-accent: #FFFFFF;
   --ink: #0F172A;
   --ink-muted: #475569;
@@ -91,4 +93,66 @@
   * { @apply border-border outline-ring/50; }
   body { @apply bg-background text-foreground; font-family: Inter, ui-sans-serif, system-ui, sans-serif; }
   html { @apply font-sans; }
+}
+
+@layer utilities {
+  .mesh-blob {
+    position: absolute;
+    border-radius: 9999px;
+    filter: blur(90px);
+    mix-blend-mode: normal;
+    will-change: transform;
+  }
+
+  .mesh-blob-primary {
+    width: 680px;
+    height: 680px;
+    background: var(--primary);
+    opacity: 0.76;
+    animation: drift-primary 18s ease-in-out infinite alternate;
+  }
+
+  .mesh-blob-primary-light {
+    width: 620px;
+    height: 620px;
+    background: var(--primary-light);
+    opacity: 0.72;
+    animation: drift-primary-light 22s ease-in-out infinite alternate;
+  }
+
+  .mesh-blob-accent {
+    width: 560px;
+    height: 560px;
+    background: var(--accent);
+    opacity: 0.68;
+    animation: drift-accent 25s ease-in-out infinite alternate;
+  }
+
+  .mesh-blob-accent-light {
+    width: 520px;
+    height: 520px;
+    background: var(--accent-light);
+    opacity: 0.62;
+    animation: drift-accent-light 20s ease-in-out infinite alternate;
+  }
+
+  @keyframes drift-primary {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(64px, -42px) scale(1.14); }
+  }
+
+  @keyframes drift-primary-light {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(-58px, 36px) scale(1.12); }
+  }
+
+  @keyframes drift-accent {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(52px, 48px) scale(1.16); }
+  }
+
+  @keyframes drift-accent-light {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(-46px, -34px) scale(1.1); }
+  }
 }
