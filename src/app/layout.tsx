@@ -13,7 +13,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className="h-full antialiased"
     >
-      <body className="min-h-full flex flex-col"><MockRouteGuard>{children}</MockRouteGuard></body>
+      <body className="min-h-full flex flex-col" suppressHydrationWarning>
+        <MockRouteGuard>{children}</MockRouteGuard>
+      </body>
     </html>
   );
 }

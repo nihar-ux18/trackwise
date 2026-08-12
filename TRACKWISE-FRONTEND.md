@@ -81,3 +81,23 @@ Each route group (`/student/*`, `/mentor/*`, `/industry/*`) checks the logged-in
 Mentors can add new students directly via `/mentor/add-student` — entering the student's name and email, and either setting or auto-generating a password for their account. This keeps student onboarding within the academic institution (rather than giving Industry Partners any account-creation control), and fits naturally alongside the mentor's existing role of verifying student data.
 
 *Note: in a full production version, this would ideally sit under a dedicated Admin/Coordinator role — kept under Mentor here to stay within hackathon time constraints.*
+
+---
+
+## 6. Topbar Account Menu (all roles)
+
+No dedicated Settings page. Instead, clicking the user avatar/name in the Topbar opens a dropdown with two options:
+
+| Option | Behavior |
+|---|---|
+| Edit Profile | Opens a modal/dialog (not a new route) — see contents below |
+| Log Out | Clears the mock session and redirects to `/login` |
+
+**Edit Profile modal contents:**
+- Profile picture — preview + placeholder upload (mock only, no real file storage)
+- Username / display name — editable text field
+- Email — read-only (tied to the mock account)
+- "Change Password" — links out to the existing `/forgot-password` flow rather than duplicating that logic
+- Save button — updates local/mock user state only, no backend call
+
+This menu is shared across all three roles (Student, Mentor, Industry) using the same component — only the underlying user data shown differs.
